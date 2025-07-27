@@ -1,5 +1,4 @@
-#ifndef NightLightServer_h
-#define NightLightServer_h
+#pragma once
 
 #include <ESPAsyncWebServer.h>
 #include "AsyncJson.h"
@@ -32,5 +31,3 @@ class NightLightServer {
         void init();
         void begin();
 };
-
-#endif
