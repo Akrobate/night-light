@@ -4,11 +4,11 @@
 BusinessState::BusinessState() {}
 
 // Getters
-String BusinessState::getSsid() const {
+String BusinessState::getStaSsid() const {
     return ssid;
 }
 
-String BusinessState::getPassword() const {
+String BusinessState::getStaPassword() const {
     return password;
 }
 
@@ -24,17 +24,17 @@ bool BusinessState::isNetworkEnabled() const {
     return network_enabled;
 }
 
-int BusinessState::getNetworkAutodisableDelaySeconds() const {
-    return network_autodisable_delay_seconds;
+int BusinessState::getNetworkDisableDelaySeconds() const {
+    return network_disable_delay_seconds;
 }
 
 // Setters
-void BusinessState::setSsid(const String& s) {
-    ssid = s;
+void BusinessState::setStaSsid(const String& s) {
+    sta_ssid = s;
 }
 
-void BusinessState::setPassword(const String& p) {
-    password = p;
+void BusinessState::setStaPassword(const String& p) {
+    sta_password = p;
 }
 
 void BusinessState::setApName(const String& name) {
@@ -49,6 +49,6 @@ void BusinessState::setNetworkEnabled(bool enabled) {
     network_enabled = enabled;
 }
 
-void BusinessState::setNetworkAutodisableDelaySeconds(int delay) {
-    network_autodisable_delay_seconds = delay;
+void BusinessState::setNetworkDisableDelaySeconds(int delay) {
+    network_disable_delay_seconds = delay;
 }

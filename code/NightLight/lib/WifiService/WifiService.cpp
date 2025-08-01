@@ -19,8 +19,8 @@ void WifiService::init() {
 
 void WifiService::connect() {
     WiFi.begin(
-        this->business_state->sta_ssid,
-        this->business_state->sta_password
+        this->business_state->getStaSsid(),
+        this->business_state->getStaPassword()
     );
 }
 
@@ -50,8 +50,8 @@ void WifiService::update() {
 
     }
 
-    if (this->business_state->disconnect_access_point_delay > 0) {
-        if (millis() - this->time > this->business_state->disconnect_access_point_delay * 1000) {
+    if (this->business_state->getNetworkAutodisableDelaySeconds() > 0) {
+        if (millis() - this->time > this->business_state->getNetworkAutodisableDelaySeconds() * 1000) {
             this->disconnectAccessPoint();
         }
     }
