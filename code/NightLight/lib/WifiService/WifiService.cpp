@@ -37,7 +37,7 @@ void WifiService::update() {
     ) {
         this->business_state->sta_is_connected = true;
         this->business_state->sta_ip = WiFi.localIP().toString();
-        if (MDNS.begin(this->business_state->mdns_host)) { // "round-timer.local"
+        if (MDNS.begin(this->business_state->mdns_host)) { // "night-light.local"
             this->business_state->mdns_is_configured = true;
             Serial.println("mDNS configured");
         } else {

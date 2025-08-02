@@ -9,11 +9,17 @@ class BusinessState {
         BusinessState();
         String sta_ssid = "";
         String sta_password = "";
+        String sta_ip = "";
         String ap_name = "";
         String ap_password = "";
-        
+        String mdns_host = "night-light.local";
+
+        bool mdns_is_configured = false;
         bool network_enabled = true;
         int network_disable_delay_seconds = 100;
+
+        bool sta_is_connected = false;
+
 
         // Getters
         String getStaSsid() const;
