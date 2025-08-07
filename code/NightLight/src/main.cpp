@@ -27,4 +27,10 @@ void setup() {
 
 void loop() {
 
+
+    wifi_service->update();
+    led_interface->update();
+    business_state->update();
+
+
 }
