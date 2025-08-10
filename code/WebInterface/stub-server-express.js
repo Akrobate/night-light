@@ -1,8 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const multer = require('multer');
-const path = require('path');
 const HTTP_CODE = require('http-status');
 
 
@@ -58,4 +55,4 @@ app.get('/api/business-state', (request, response) => {
 
 app.listen(port, () => {
   console.log(`Vintage camera stub server listening on port ${port}`)
-})
+});
