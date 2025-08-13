@@ -47,7 +47,7 @@ module crystal(lados,radio1,radio2,radio3,altura,pico){
     
 }
 
-module semisphere(r){
+module semisphere(r) {
     difference(){
         sphere(r); 
         translate([0,0,-r]) cube([2*r,2*r,2*r],center = true);
