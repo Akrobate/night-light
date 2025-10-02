@@ -7,17 +7,18 @@ module crystal(
     seed = 655
 ) {
 
-    
     function generateSeedArray(_seed) = [for(i = [1 : count]) rands(0, 1000, 7, _seed * i)];
 
     seed_data = generateSeedArray(seed);
 
     scale(scale_all)
-        crystalrock();
+        crystalrock($fn = $fn);
 
     module crystalrock(){
         union(){
-            semisphere(5, $fn=6);
+            // semisphere(5, $fn=5);
+            support_cylinder(5, $fn=5);
+            echo("crystalrock FN", $fn)
             for(i = [1 : count]){
                 angle_x = 40;
                 angle_y = 40;
@@ -48,7 +49,8 @@ module crystal(
             cylinder(r1 = radio2, r2 = radio3, h = pico, $fn = lados);
     }
 
-    module semisphere(r){
+    module semisphere(r) {
+        echo("semisphere FN", $fn)
         difference(){
             sphere(r); 
             translate([0, 0, -r])
@@ -56,7 +58,13 @@ module crystal(
         }
     }
 
+    module support_cylinder(r) {
+        cylinder(h = 2, r = r);
+    }
+
 }
 
 
-crystal();
+crystal(
+    $fn = 150
+);
