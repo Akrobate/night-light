@@ -11,13 +11,23 @@ module crystal(
 
     seed_data = generateSeedArray(seed);
 
-    scale(scale_all)
-        crystalrock($fn = $fn);
+    scale(scale_all) {
+
+        translate([1,1,-5/2])
+        scale([1,1,5])
+            projection(cut = true)
+                translate([0,0, -3])
+                    crystalrock($fn = $fn);
+
+        translate([0,0, -3])
+            crystalrock($fn = $fn);
+    }
+
 
     module crystalrock(){
         union(){
             // semisphere(5, $fn=5);
-            support_cylinder(5, $fn=5);
+            // support_cylinder(5, $fn=5);
             echo("crystalrock FN", $fn)
             for(i = [1 : count]){
                 angle_x = 40;
