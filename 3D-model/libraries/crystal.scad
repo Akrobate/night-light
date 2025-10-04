@@ -12,19 +12,20 @@ module crystal(
     seed_data = generateSeedArray(seed);
 
     scale(scale_all) {
+        feet_size = 10;
+        encaps = 3;
 
-        translate([1,1,-5/2])
-        scale([1,1,5])
-            projection(cut = true)
-                translate([0,0, -3])
-                    crystalrock($fn = $fn);
+        translate([0,0,-feet_size / 2])
+            scale([1,1,feet_size])
+                projection(cut = true)
+                    translate([0, 0, -encaps])
+                        crystalrock($fn = $fn);
 
-        translate([0,0, -3])
+        translate([0, 0, -encaps])
             crystalrock($fn = $fn);
     }
 
-
-    module crystalrock(){
+    module crystalrock() {
         union(){
             // semisphere(5, $fn=5);
             // support_cylinder(5, $fn=5);
