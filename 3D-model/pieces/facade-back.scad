@@ -1,8 +1,7 @@
 include <./../configurations/global.scad>
 use <./../libraries/commons.scad>
 
-use <./subpieces/rounded-pane.scad>
-
+use <../openscad_modules/housing/roundedPane.scad>
 
 module facadeBack(
     x_size = case_external_x_size,
