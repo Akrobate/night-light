@@ -3,7 +3,7 @@ use <./../libraries/commons.scad>
 
 use <../openscad_modules/housing/roundedPane.scad>
 
-module facadeBack(
+module facadeFrontPiece(
     x_size = case_external_x_size,
     y_size = case_external_y_size,
     z_size = case_external_panes_thickness,
@@ -37,5 +37,5 @@ module facadeBack(
     }
 }
 
-%facadeFront();
+%facadeFrontPiece();
 

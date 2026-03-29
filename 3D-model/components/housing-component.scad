@@ -1,53 +1,53 @@
-use <./../pieces/facade-front.scad>
-use <./../pieces/facade-back.scad>
-use <./../pieces/facade-top.scad>
-use <./../pieces/facade-left.scad>
-use <./../pieces/facade-corner.scad>
+use <./../pieces/facadeFrontPiece.scad>
+use <./../pieces/facadeBackPiece.scad>
+use <./../pieces/facadeTopPiece.scad>
+use <./../pieces/facadeLeftPiece.scad>
+use <./../pieces/facadeCornerPiece.scad>
 
 include <./../configurations/global.scad>
 
 module housingComponent() {
 
     translate([0, 0, case_external_z_size - case_external_panes_thickness])
-        #facadeFront();
+        #facadeFrontPiece();
 
     translate([0, 0, 0])
-        facadeBack();
+        facadeBackPiece();
 
     translate([facade_corners_offset_lenght, case_external_panes_thickness - 0.01, case_external_panes_thickness])
         rotate([90,0,0])
-            facadeTop();
+            facadeTopPiece();
 
     translate([facade_corners_offset_lenght, case_external_y_size + 0.01, case_external_panes_thickness])
         rotate([90,0,0])
-            facadeTop();
+            facadeTopPiece();
 
     translate([0 - 0.01, facade_corners_offset_lenght, case_external_panes_thickness])
         rotate([90,0,90])
-            facadeLeft();
+            facadeLeftPiece();
 
     translate([case_external_x_size - case_external_panes_thickness + 0.01, facade_corners_offset_lenght, case_external_panes_thickness])
         rotate([90,0,90])
-            facadeLeft();
+            facadeLeftPiece();
 
     // Corners (bottom left)
     translate([0, 0, case_external_panes_thickness])
-        facadeCorner();
+        facadeCornerPiece();
 
     // Corners (bottom right)
     translate([case_external_x_size, 0, case_external_panes_thickness])
         rotate([0, 0, 90])
-            facadeCorner();
+            facadeCornerPiece();
 
     // Corners (top left)
     translate([0, case_external_y_size, case_external_panes_thickness])
         rotate([0, 0, -90])
-            facadeCorner();
+            facadeCornerPiece();
 
     // Corners (bottom right)
     translate([case_external_x_size, case_external_y_size, case_external_panes_thickness])
         rotate([0, 0, -180])
-            facadeCorner();
+            facadeCornerPiece();
 
     
 }
