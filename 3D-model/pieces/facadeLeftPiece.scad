@@ -1,7 +1,5 @@
-include <./../configurations/global.scad>
-use <./../libraries/commons.scad>
-
-include <./../configurations/global.scad>
+include <../configurations/global.scad>
+use <../openscad_modules/commons/forEachCoord.scad>
 
 
 module facadeLeftPiece(

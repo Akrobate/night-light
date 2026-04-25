@@ -1,6 +1,6 @@
-use <./../libraries/commons.scad>
+include <../configurations/global.scad>
+use <../openscad_modules/commons/forEachCoord.scad>
 
-include <./../configurations/global.scad>
 
 
 module facadeTopPiece(

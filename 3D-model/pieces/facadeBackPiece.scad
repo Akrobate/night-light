@@ -1,6 +1,5 @@
-include <./../configurations/global.scad>
-use <./../libraries/commons.scad>
-
+include <../configurations/global.scad>
+use <../openscad_modules/commons/forEachCoord.scad>
 use <../openscad_modules/housing/roundedPane.scad>
 
 module facadeBackPiece(
@@ -36,5 +35,5 @@ module facadeBackPiece(
     }
 }
 
-%facadeFrontPiece();
+%facadeBackPiece();
 
