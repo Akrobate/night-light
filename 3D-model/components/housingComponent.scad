@@ -1,10 +1,10 @@
-use <./../pieces/facadeFrontPiece.scad>
-use <./../pieces/facadeBackPiece.scad>
-use <./../pieces/facadeTopPiece.scad>
-use <./../pieces/facadeLeftPiece.scad>
-use <./../pieces/facadeCornerPiece.scad>
+use <../pieces/facadeFrontPiece.scad>
+use <../pieces/facadeBackPiece.scad>
+use <../pieces/facadeTopPiece.scad>
+use <../pieces/facadeLeftPiece.scad>
+use <../pieces/facadeCornerPiece.scad>
 
-include <./../configurations/global.scad>
+include <../configurations/global.scad>
 
 module housingComponent() {
 
