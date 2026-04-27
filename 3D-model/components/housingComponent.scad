@@ -6,6 +6,14 @@ use <../pieces/facadeCornerPiece.scad>
 
 include <../configurations/global.scad>
 
+
+/**
+ * housingComponent
+ * @name housingComponent
+ * @description housingComponent
+ * @type component
+ * @parent main
+ */
 module housingComponent() {
 
     translate([0, 0, case_external_z_size - case_external_panes_thickness])
@@ -52,5 +60,10 @@ module housingComponent() {
     
 }
 
+
+/**
+ * @png
+ * @colorscheme BeforeDawn
+ */
 housingComponent();
 

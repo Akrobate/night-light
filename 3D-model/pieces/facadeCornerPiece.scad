@@ -1,6 +1,13 @@
 include <./../configurations/global.scad>
 
 
+/**
+ * facadeCornerPiece
+ * @name facadeCornerPiece
+ * @description
+ * @type piece
+ * @parent housingComponent
+ */
 module facadeCornerPiece(
     round_radius = facade_front_round_edges_radius,
     z_size = case_external_z_size - (case_external_panes_thickness * 2),
@@ -22,6 +29,7 @@ module facadeCornerPiece(
     $fn = facade_fn
 ) {
 
+    // @todo move to openscad module
     difference() {
         union() {
             translate([round_radius, round_radius, 0])
@@ -89,6 +97,12 @@ module facadeCornerPiece(
 }
 
 
+/**
+ * @stl
+ * @png
+ * @colorscheme BeforeDawn
+ * @view axes,scales
+ */
 facadeCornerPiece(
     $fn = 100
 );

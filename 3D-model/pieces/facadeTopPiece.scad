@@ -2,7 +2,13 @@ include <../configurations/global.scad>
 use <../openscad_modules/commons/forEachCoord.scad>
 
 
-
+/**
+ * facadeTopPiece
+ * @name facadeTopPiece
+ * @description
+ * @type piece
+ * @parent housingComponent
+ */
 module facadeTopPiece(
     x_size = case_external_x_size - (facade_corners_offset_lenght * 2),
     y_size = case_external_z_size - (case_external_panes_thickness * 2),
@@ -28,4 +34,10 @@ module facadeTopPiece(
 }
 
 
+/**
+ * @stl
+ * @png
+ * @colorscheme BeforeDawn
+ * @view axes,scales
+ */
 facadeTopPiece();

@@ -2,15 +2,19 @@ include <../configurations/global.scad>
 use <../openscad_modules/commons/forEachCoord.scad>
 use <../openscad_modules/housing/roundedPane.scad>
 
+/**
+ * facadeFrontPiece
+ * @name facadeFrontPiece
+ * @description
+ * @type piece
+ * @parent housingComponent
+ */
 module facadeFrontPiece(
     x_size = case_external_x_size,
     y_size = case_external_y_size,
     z_size = case_external_panes_thickness,
-
     throws_margin = facade_throws_margin,
-
     round_edges_radius = facade_front_round_edges_radius,
-
     $fn = facade_fn
 ) {
 
@@ -36,5 +40,12 @@ module facadeFrontPiece(
     }
 }
 
-%facadeFrontPiece();
+
+/**
+ * @stl
+ * @png
+ * @colorscheme BeforeDawn
+ * @view axes,scales
+ */
+facadeFrontPiece();
 
