@@ -15,14 +15,18 @@ module crystal(
         feet_size = 10;
         encaps = 3;
 
-        translate([0,0,-feet_size / 2])
-            scale([1,1,feet_size])
+        translate([0, 0, -feet_size / 2])
+            scale([1, 1, feet_size])
                 projection(cut = true)
                     translate([0, 0, -encaps])
                         crystalrock($fn = $fn);
 
         translate([0, 0, -encaps])
-            crystalrock($fn = $fn);
+            difference() {
+                crystalrock($fn = $fn);
+                translate([0, 0, -100 / 2 + encaps])
+                    cube([100, 100, 100], center = true);
+            }
     }
 
     module crystalrock() {
