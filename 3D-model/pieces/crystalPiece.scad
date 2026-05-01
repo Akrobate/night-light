@@ -1,3 +1,5 @@
+include <../configurations/global.scad>
+
 use <../libraries/crystal.scad>
 
 
@@ -9,7 +11,7 @@ use <../libraries/crystal.scad>
  * @parent housingComponent
  */
 module crystalPiece() {
-    crystal(scale_all = 4);
+    crystal(scale_all = crystal_scale_all);
 }
 
 

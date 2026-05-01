@@ -18,3 +18,5 @@ insert_throw_diameter = 4.2;
 insert_throw_length = 6;
 
 facade_fn = 100;
+
+crystal_scale_all = 4;
