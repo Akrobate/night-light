@@ -17,7 +17,7 @@ void setup() {
     business_state = new BusinessState();
     led_interface = new LedInterface();
     wifi_service = new WifiService();
-    night_light_server = new NightLightServer();
+    night_light_server = new NightLightServer(SERVER_PORT);
 
     night_light_server->injectBusinessState(business_state);
     wifi_service->injectBusinessState(business_state);
@@ -27,10 +27,6 @@ void setup() {
 
 void loop() {
 
-
     wifi_service->update();
     led_interface->update();
-    business_state->update();
-
-
 }

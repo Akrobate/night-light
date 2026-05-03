@@ -21,7 +21,6 @@ class NightLightServer {
 
         AsyncWebServer * server;
         BusinessState * business_state;
-        RoundTimer * night_light;
         int channel;
 
         void injectBusinessState(BusinessState * business_state);

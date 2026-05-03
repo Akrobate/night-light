@@ -1,15 +1,14 @@
 #include "BusinessState.h"
 
-// Constructeur
 BusinessState::BusinessState() {}
 
 // Getters
 String BusinessState::getStaSsid() const {
-    return ssid;
+    return sta_ssid;
 }
 
 String BusinessState::getStaPassword() const {
-    return password;
+    return sta_password;
 }
 
 String BusinessState::getApName() const {
@@ -24,7 +23,7 @@ bool BusinessState::isNetworkEnabled() const {
     return network_enabled;
 }
 
-int BusinessState::getNetworkDisableDelaySeconds() const {
+int BusinessState::getNetworkAutodisableDelaySeconds() const {
     return network_disable_delay_seconds;
 }
 
@@ -49,6 +48,6 @@ void BusinessState::setNetworkEnabled(bool enabled) {
     network_enabled = enabled;
 }
 
-void BusinessState::setNetworkDisableDelaySeconds(int delay) {
+void BusinessState::setNetworkAutodisableDelaySeconds(int delay) {
     network_disable_delay_seconds = delay;
 }
