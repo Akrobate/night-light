@@ -4,6 +4,8 @@ case_external_y_size = 80;
 case_external_z_size = 30;
 case_external_panes_thickness = 4.8;
 
+case_border_panes_thickness = 4;
+
 facade_front_round_edges_radius = 5;
 facade_throws_margin = 5;
 

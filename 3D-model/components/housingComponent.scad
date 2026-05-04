@@ -3,6 +3,7 @@ use <../pieces/facadeBackPiece.scad>
 use <../pieces/facadeTopPiece.scad>
 use <../pieces/facadeLeftPiece.scad>
 use <../pieces/facadeCornerPiece.scad>
+use <../pieces/housingBorderPiece.scad>
 
 include <../configurations/global.scad>
 
@@ -55,15 +56,37 @@ module housingComponent() {
     // Corners (bottom right)
     translate([case_external_x_size, case_external_y_size, case_external_panes_thickness])
         rotate([0, 0, -180])
-            facadeCornerPiece();
+            facadeCornerPiece();    
+}
 
+
+/**
+ * housingComponentV2
+ * @name housingComponentV2
+ * @description housingComponentV2
+ * @type component
+ * @parent main
+ */
+module housingComponentV2() {
+
+    translate([0, 0, case_external_z_size - case_external_panes_thickness])
+        #facadeFrontPiece();
+
+    translate([0, 0, 0])
+        facadeBackPiece();
+
+    translate([0, 0, case_external_panes_thickness])
+        housingBorderPiece();
     
 }
+
 
 
 /**
  * @png
  * @colorscheme BeforeDawn
  */
-housingComponent();
+//housingComponent();
+
+housingComponentV2();
 

@@ -5,8 +5,13 @@ include <configurations/global.scad>
 
 // holder8266D1Component();
 
+HOUSING_V2 = true;
 
-housingComponent();
+if (HOUSING_V2) {
+    housingComponentV2();
+} else {
+    housingComponent();
+}
 
 translate([
     case_external_x_size / 2,
