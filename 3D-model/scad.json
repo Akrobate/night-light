@@ -6,6 +6,7 @@
   "repository": "",
   "dependencies": {
     "commons": "https://gitlab.com/openscad-modules/commons.git#0.0.1",
+    "esp-module-holder-3d-model": "https://gitlab.com/Akrobate/esp-module-holder-3d-model.git#0.0.1",
     "housing": "https://gitlab.com/openscad-modules/housing.git#0.0.5",
     "led": "https://gitlab.com/openscad-modules/led.git#0.0.1"
   }

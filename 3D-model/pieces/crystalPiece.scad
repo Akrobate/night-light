@@ -1,6 +1,6 @@
 include <../configurations/global.scad>
 
-use <../libraries/crystal.scad>
+use <../assets/crystal.scad>
 
 
 /**

@@ -1,9 +1,8 @@
 use <components/housingComponent.scad>
 use <pieces/crystalPiece.scad>
+use <assets/esp8266WemosD1.scad>
 
 include <configurations/global.scad>
-
-// holder8266D1Component();
 
 HOUSING_V2 = true;
 
@@ -20,3 +19,5 @@ translate([
 ])
     crystalPiece();
 
+
+esp8266WemosD1();

@@ -1,4 +1,4 @@
-use <../libraries/crystal.scad>
+use <../assets/crystal.scad>
 
 // @todo enveloppe
 module crystalSupportEnveloppe() {
