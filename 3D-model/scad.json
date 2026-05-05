@@ -6,6 +6,7 @@
   "repository": "",
   "dependencies": {
     "commons": "https://gitlab.com/openscad-modules/commons.git#0.0.1",
-    "housing": "https://gitlab.com/openscad-modules/housing.git#0.0.5"
+    "housing": "https://gitlab.com/openscad-modules/housing.git#0.0.5",
+    "led": "https://gitlab.com/openscad-modules/led.git#0.0.1"
   }
 }
