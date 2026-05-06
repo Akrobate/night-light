@@ -16,6 +16,7 @@ class BusinessState {
 
         bool mdns_is_configured = false;
         bool network_enabled = true;
+        bool sta_needs_reconnection = true;
         int network_disable_delay_seconds = 100;
 
         bool sta_is_connected = false;
