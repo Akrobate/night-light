@@ -1,0 +1,325 @@
+#include "LightAnimation.h"
+
+
+LightAnimation::LightAnimation() {
+    this->setAllLedsToBlack();
+}
+
+
+void LightAnimation::init() {
+    pinMode(PIN_NEOPIXEL, OUTPUT);
+    digitalWrite(PIN_NEOPIXEL, LOW);
+
+    this->setAllLedsToBlack();
+
+    FastLED.addLeds<NEOPIXEL, PIN_NEOPIXEL>(this->leds, 4);
+    delay(50);
+    FastLED.show();
+    delay(50); // Wait for the LEDs to initialize
+
+}
+
+
+
+void LightAnimation::update() {
+    if (this->disabled) {
+        return;
+    }
+    switch (this->animation) {
+        case ANIMATION_START_DEVICE:
+            this->animationStartDevice();
+            break;
+        case ANIMATION_LOADING:
+            this->animationRollingWheel();
+            break;
+        case ANIMATION_INDEXING:
+            this->animationRollingWheel();
+            break;
+        case ANIMATION_FLASH_FADE_OUT:
+            this->animationFlashFadeOut();
+            break;
+        case ANIMATION_ALL_BLINKING:
+            this->animationAllBlinking();
+            break;
+        case ANIMATION_WARNING:
+            this->animationAllBlinking();
+            break;
+        case ANIMATION_ALL_BLINKING_WITH_COLOR_CHANGE:
+            this->animationAllBlinkingWithColorChange();
+            break;
+        default:
+            break;
+    }
+}
+
+
+void LightAnimation::animationStartDevice() {
+    unsigned long _millis = millis();
+    int value = 48;
+    if (_millis < this->last_time + this->period_duration) {
+
+        int color_offset = map(_millis - this->last_time, 0, this->period_duration, 0, 255);
+
+        this->leds[0] = CHSV(160 + color_offset, 255, value);
+        this->leds[1] = CHSV(64 + color_offset, 255, value);
+        this->leds[2] = CHSV(128 + color_offset, 255, value);
+        this->leds[3] = CHSV(192 + color_offset, 255, value);
+
+        FastLED.show();
+    } else {
+        if (this->loop_animation) {
+            this->last_time = _millis;
+        } else {
+            this->animation = ANIMATION_NO_ANIMATION;
+        }
+    }
+}
+
+
+void LightAnimation::animationAllBlinkingWithColorChange() {
+    unsigned long _millis = millis();
+
+    int brightness_max = 64;
+
+    if (_millis < this->last_time + this->period_duration) {
+
+        if (_millis < this->last_time + this->period_duration / 2) {
+            for (int i = 0; i < 4; i++) {
+                this->leds[i] = CHSV(
+                    (this->hue - (this->loop_count * 3)) % 255,
+                    255,
+                    map(_millis - (this->last_time), 0, this->period_duration / 2, 0, brightness_max - 1) % brightness_max
+                );
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                this->leds[i] = CHSV(
+                    (this->hue - (this->loop_count * 3)) % 255,
+                    255,
+                    (brightness_max - map(_millis - this->last_time - this->period_duration / 2, 0, this->period_duration / 2, 0, brightness_max - 1)) % brightness_max
+                );
+            }
+        }
+        FastLED.show();
+
+    } else {
+        if (this->loop_animation) {
+            this->last_time = _millis;
+            this->loop_count++;
+        } else {
+            this->resetAnimation();
+        }
+    }
+}
+
+
+void LightAnimation::animationAllBlinking() {
+    int brightness_max = 64;
+
+    unsigned long _millis = millis();
+    if (_millis < this->last_time + this->period_duration) {
+
+        if (_millis < this->last_time + this->period_duration / 2) {
+            for (int i = 0; i < 4; i++) {
+                this->leds[i] = CHSV(
+                    this->hue,
+                    255,
+                    map(_millis - (this->last_time), 0, this->period_duration / 2, 0, brightness_max - 1) % brightness_max
+                );
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                this->leds[i] = CHSV(
+                    this->hue,
+                    255,
+                    (brightness_max - map(_millis - this->last_time - this->period_duration / 2, 0, this->period_duration / 2, 0, brightness_max - 1)) % brightness_max
+                );
+            }
+        }
+        FastLED.show();
+
+    } else {
+        if (this->loop_animation) {
+            this->last_time = _millis;
+        } else {
+            this->resetAnimation();
+        }
+    }
+}
+
+
+void LightAnimation::animationRollingWheel() {
+    unsigned long _millis = millis();
+
+    int brightness_max = 64;
+
+    const uint8_t led_order[4] = {0, 1, 3, 2}; // Ordre physique
+    const int led_count = 4;
+
+    // Durée totale d'un cycle complet
+    unsigned long wave_duration = this->period_duration;
+    unsigned long led_spacing = wave_duration / led_count;
+
+    // Position relative dans le cycle (de 0 à wave_duration)
+    unsigned long t = (_millis - this->last_time) % wave_duration;
+
+    for (int i = 0; i < led_count; i++) {
+        int led_index = led_order[i];
+
+        // Centre du passage de la "vague" pour cette LED
+        long led_center = i * led_spacing;
+
+        // Décalage par rapport à la tête de la vague
+        long time_offset = (long)t - (long)led_center;
+
+        // Gère le wrap-around en fin de cycle (pour boucle fluide)
+        if (time_offset < -((long)wave_duration / 2)) time_offset += wave_duration;
+        if (time_offset >  ((long)wave_duration / 2)) time_offset -= wave_duration;
+
+        // Triangle inversé : max au centre, 0 sur les bords
+        int brightness = 0;
+        //long fade_zone = led_spacing * 1.5; // 3 leds allumés au maximum
+        long fade_zone = led_spacing * 1.1;
+
+        if (abs(time_offset) <= fade_zone) {
+            brightness = map(abs(time_offset), 0, fade_zone, brightness_max, 0);
+        } else {
+            brightness = 0;
+        }
+
+        this->leds[led_index] = CHSV(this->hue, 255, brightness);
+    }
+
+    FastLED.show();
+}
+
+
+
+void LightAnimation::animationIndexing() {
+    this->animationRollingWheel();
+}
+
+void LightAnimation::animationFlashFadeOut() {
+    unsigned long _millis = millis();
+    unsigned long elapsed = _millis - this->last_time;
+
+    if (elapsed < this->period_duration) {
+        if (elapsed < this->period_duration / 2) {
+            // Phase 1 : allumage complet (blanc à fond)
+            fill_solid(this->leds, 4, CHSV(0, 0, 255));
+        } else {
+            // Phase 2 : fade out
+            unsigned long fade_time = elapsed - (this->period_duration / 2);
+            unsigned long fade_duration = this->period_duration / 2;
+
+            uint8_t brightness = 255 - map(
+                constrain(fade_time, 0UL, fade_duration),
+                0UL, fade_duration,
+                0UL, 255UL
+            );
+
+            brightness = constrain(brightness, 0, 255); // sécurité
+            fill_solid(this->leds, 4, CHSV(0, 0, brightness));
+        }
+
+        FastLED.show();
+    } else {
+        if (this->loop_animation) {
+            this->last_time = _millis;
+        } else {
+            this->resetAnimation();
+        }
+    }
+}
+
+
+
+void LightAnimation::triggerAnimationStartDevice() {
+    this->last_time = millis();
+    this->period_duration = 10000;
+    this->animation = ANIMATION_START_DEVICE;
+    this->loop_animation = true;
+}
+
+
+void LightAnimation::triggerAnimationFatalError() {
+    this->last_time = millis();
+    this->period_duration = 500;
+    this->animation = ANIMATION_ALL_BLINKING;
+    this->hue = 0; // Red
+    this->loop_animation = true;
+}
+
+
+void LightAnimation::triggerAnimationDelay() {
+    this->last_time = millis();
+    this->period_duration = 500;
+    this->animation = ANIMATION_ALL_BLINKING_WITH_COLOR_CHANGE;
+    this->hue = 64; // Yellow
+    this->loop_animation = true;
+    this->loop_count = 0; // Reset loop count for delay animation
+}
+
+
+void LightAnimation::triggerAnimationLoading() {
+    this->last_time = millis();
+    this->period_duration = 1000;
+    this->animation = ANIMATION_LOADING;
+    this->hue = 160; // Blue
+    this->loop_animation = true;
+}
+
+
+void LightAnimation::triggerAnimationFlashFadeOut() {
+    this->last_time = millis();
+    this->period_duration = 1000;
+    this->animation = ANIMATION_FLASH_FADE_OUT;
+    this->loop_animation = false;
+}
+
+
+void LightAnimation::resetAnimation() {
+    this->animation = ANIMATION_NO_ANIMATION;
+    this->hue = 0;
+    this->setAllLedsToBlack();
+    FastLED.show();
+}
+
+
+void LightAnimation::triggerAnimationIndexing() {
+    this->last_time = millis();
+    this->period_duration = 1000;
+    this->animation = ANIMATION_INDEXING;
+    this->hue = 224; // Violet
+    this->loop_animation = true;
+}
+
+
+void LightAnimation::triggerAnimationWarning() {
+    this->last_time = millis();
+    this->period_duration = 500;
+    this->animation = ANIMATION_WARNING;
+    this->hue = 32; // Orange
+    this->loop_animation = true;
+}
+
+
+
+void LightAnimation::setAllLedsToBlack() {
+    this->leds[0] = CRGB::Black;
+    this->leds[1] = CRGB::Black;
+    this->leds[2] = CRGB::Black;
+    this->leds[3] = CRGB::Black;
+}
+
+
+void LightAnimation::disable() {
+    this->disabled = true;
+    this->setAllLedsToBlack();
+    FastLED.show();
+}
+
+
+void LightAnimation::enable() {
+    this->disabled = false;
+}
