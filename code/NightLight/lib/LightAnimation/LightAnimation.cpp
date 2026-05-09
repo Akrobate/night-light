@@ -35,9 +35,6 @@ void LightAnimation::update() {
         case ANIMATION_INDEXING:
             this->animationRollingWheel();
             break;
-        case ANIMATION_FLASH_FADE_OUT:
-            this->animationFlashFadeOut();
-            break;
         case ANIMATION_ALL_BLINKING:
             this->animationAllBlinking();
             break;
@@ -199,40 +196,6 @@ void LightAnimation::animationIndexing() {
     this->animationRollingWheel();
 }
 
-void LightAnimation::animationFlashFadeOut() {
-    unsigned long _millis = millis();
-    unsigned long elapsed = _millis - this->last_time;
-
-    if (elapsed < this->period_duration) {
-        if (elapsed < this->period_duration / 2) {
-            // Phase 1 : allumage complet (blanc à fond)
-            fill_solid(this->leds, 4, CHSV(0, 0, 255));
-        } else {
-            // Phase 2 : fade out
-            unsigned long fade_time = elapsed - (this->period_duration / 2);
-            unsigned long fade_duration = this->period_duration / 2;
-
-            uint8_t brightness = 255 - map(
-                constrain(fade_time, 0UL, fade_duration),
-                0UL, fade_duration,
-                0UL, 255UL
-            );
-
-            brightness = constrain(brightness, 0, 255); // sécurité
-            fill_solid(this->leds, 4, CHSV(0, 0, brightness));
-        }
-
-        FastLED.show();
-    } else {
-        if (this->loop_animation) {
-            this->last_time = _millis;
-        } else {
-            this->resetAnimation();
-        }
-    }
-}
-
-
 
 void LightAnimation::triggerAnimationStartDevice() {
     this->last_time = millis();
@@ -267,14 +230,6 @@ void LightAnimation::triggerAnimationLoading() {
     this->animation = ANIMATION_LOADING;
     this->hue = 160; // Blue
     this->loop_animation = true;
-}
-
-
-void LightAnimation::triggerAnimationFlashFadeOut() {
-    this->last_time = millis();
-    this->period_duration = 1000;
-    this->animation = ANIMATION_FLASH_FADE_OUT;
-    this->loop_animation = false;
 }
 
 

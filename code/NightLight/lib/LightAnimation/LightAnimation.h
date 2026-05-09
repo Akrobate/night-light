@@ -12,8 +12,10 @@ class LightAnimation {
         static constexpr int ANIMATION_NO_ANIMATION = 0;
         static constexpr int ANIMATION_START_DEVICE = 1;
         static constexpr int ANIMATION_LOADING = 2;
-        static constexpr int ANIMATION_FLASH_FADE_OUT = 3;
+
+        //ANIMATION_ALL_BLINKING // @todo change to patterns
         static constexpr int ANIMATION_ALL_BLINKING = 4;
+
         static constexpr int ANIMATION_INDEXING = 5;
         static constexpr int ANIMATION_WARNING = 6;
         static constexpr int ANIMATION_ALL_BLINKING_WITH_COLOR_CHANGE = 7;
@@ -29,7 +31,6 @@ class LightAnimation {
         void resetAnimation(); // no animation, turn off LEDs
         void triggerAnimationStartDevice();
         void triggerAnimationLoading();
-        void triggerAnimationFlashFadeOut();
         void triggerAnimationFatalError();
         void triggerAnimationIndexing();
         void triggerAnimationWarning();
@@ -54,7 +55,6 @@ class LightAnimation {
         void animationStartDevice();
         void animationRollingWheel();
         void animationIndexing();
-        void animationFlashFadeOut();
         void animationAllBlinking();
         void animationAllBlinkingWithColorChange();
         void animationWarning();
