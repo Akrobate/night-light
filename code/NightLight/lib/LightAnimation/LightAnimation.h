@@ -13,12 +13,17 @@ class LightAnimation {
         static constexpr int ANIMATION_START_DEVICE = 1;
         static constexpr int ANIMATION_LOADING = 2;
 
-        //ANIMATION_ALL_BLINKING // @todo change to patterns
         static constexpr int ANIMATION_ALL_BLINKING = 4;
 
         static constexpr int ANIMATION_INDEXING = 5;
         static constexpr int ANIMATION_WARNING = 6;
         static constexpr int ANIMATION_ALL_BLINKING_WITH_COLOR_CHANGE = 7;
+
+        static constexpr int ANIMATION_PATTERN_0 = 10;
+        static constexpr int ANIMATION_PATTERN_1 = 11;
+        static constexpr int ANIMATION_PATTERN_2 = 12;
+        static constexpr int ANIMATION_PATTERN_3 = 13;
+        static constexpr int ANIMATION_PATTERN_4 = 13;
 
         bool disabled = false;
         unsigned int animation = 0;
