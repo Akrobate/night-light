@@ -259,6 +259,14 @@ void LightAnimation::triggerAnimationWarning() {
 }
 
 
+void LightAnimation::triggerAnimationPattern(int animation_pattern, int period_duration, bool loop_animation) {
+    this->last_time = millis();
+    this->period_duration = period_duration;
+    this->animation = animation_pattern;
+    this->loop_animation = loop_animation;
+}
+
+
 
 void LightAnimation::setAllLedsToBlack() {
     this->leds[0] = CRGB::Black;
@@ -278,3 +286,5 @@ void LightAnimation::disable() {
 void LightAnimation::enable() {
     this->disabled = false;
 }
+
+

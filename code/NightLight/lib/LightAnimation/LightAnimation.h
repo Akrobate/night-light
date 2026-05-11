@@ -41,6 +41,8 @@ class LightAnimation {
         void triggerAnimationWarning();
         void triggerAnimationDelay();
 
+        void triggerAnimationPattern(int animation_pattern, int period_duration, bool loop_animation);
+
         void setAllLedsToBlack();
 
         void disable();
