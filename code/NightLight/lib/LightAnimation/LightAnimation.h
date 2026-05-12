@@ -66,4 +66,7 @@ class LightAnimation {
         void animationAllBlinkingWithColorChange();
         void animationWarning();
 
+        void animationPattern0();
+        void animationPattern1();
+
 };

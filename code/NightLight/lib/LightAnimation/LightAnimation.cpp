@@ -44,9 +44,28 @@ void LightAnimation::update() {
         case ANIMATION_ALL_BLINKING_WITH_COLOR_CHANGE:
             this->animationAllBlinkingWithColorChange();
             break;
+        case ANIMATION_PATTERN_0:
+            this->animationPattern0();
+            break;
+        case ANIMATION_PATTERN_1:
+            this->animationPattern1();
+            break;
         default:
             break;
     }
+}
+
+
+void LightAnimation::animationPattern0() {
+
+
+}
+
+
+
+void LightAnimation::animationPattern1() {
+
+
 }
 
 
