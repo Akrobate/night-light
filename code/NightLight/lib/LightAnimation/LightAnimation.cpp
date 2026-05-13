@@ -70,24 +70,16 @@ void LightAnimation::animationPattern1() {
 
 
 void LightAnimation::animationStartDevice() {
-    unsigned long _millis = millis();
-    int value = 48;
-    if (_millis < this->last_time + this->period_duration) {
-
+    if (this->shouldExecuteCurrentAnimation()) {
+        unsigned long _millis = this->current_animation_millis;
+        int value = 48;
         int color_offset = map(_millis - this->last_time, 0, this->period_duration, 0, 255);
 
         this->leds[0] = CHSV(160 + color_offset, 255, value);
         this->leds[1] = CHSV(64 + color_offset, 255, value);
         this->leds[2] = CHSV(128 + color_offset, 255, value);
         this->leds[3] = CHSV(192 + color_offset, 255, value);
-
         FastLED.show();
-    } else {
-        if (this->loop_animation) {
-            this->last_time = _millis;
-        } else {
-            this->animation = ANIMATION_NO_ANIMATION;
-        }
     }
 }
 
@@ -130,11 +122,11 @@ void LightAnimation::animationAllBlinkingWithColorChange() {
 
 
 void LightAnimation::animationAllBlinking() {
-    int brightness_max = 64;
-
+    
     unsigned long _millis = millis();
     if (_millis < this->last_time + this->period_duration) {
-
+        
+        int brightness_max = 64;
         if (_millis < this->last_time + this->period_duration / 2) {
             for (int i = 0; i < 4; i++) {
                 this->leds[i] = CHSV(
@@ -307,3 +299,16 @@ void LightAnimation::enable() {
 }
 
 
+bool LightAnimation::shouldExecuteCurrentAnimation() {
+    this->current_animation_millis = millis();
+    if (current_animation_millis < this->last_time + this->period_duration) {
+        return true;
+    } else {
+        if (this->loop_animation) {
+            this->last_time = current_animation_millis;
+        } else {
+            this->animation = ANIMATION_NO_ANIMATION;
+        }
+    }
+    return false;
+}

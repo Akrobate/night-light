@@ -29,6 +29,7 @@ class LightAnimation {
         unsigned int animation = 0;
         
 
+
         LightAnimation();
         void init();
         void update();
@@ -48,6 +49,8 @@ class LightAnimation {
         void disable();
         void enable();
 
+        
+
     private:
 
         CRGB leds[4];
@@ -56,6 +59,8 @@ class LightAnimation {
         unsigned int period_duration = 1000;
         boolean loop_animation = false;
         unsigned long loop_count = 0;
+
+        unsigned long current_animation_millis = 0;
 
         int hue = 0;
 
@@ -68,5 +73,7 @@ class LightAnimation {
 
         void animationPattern0();
         void animationPattern1();
+
+        bool shouldExecuteCurrentAnimation();
 
 };
