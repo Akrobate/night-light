@@ -15,10 +15,8 @@ void LightAnimation::init() {
     FastLED.addLeds<NEOPIXEL, PIN_NEOPIXEL>(this->leds, 4);
     delay(50);
     FastLED.show();
-    delay(50); // Wait for the LEDs to initialize
-
+    delay(50);
 }
-
 
 
 void LightAnimation::update() {
@@ -58,13 +56,10 @@ void LightAnimation::update() {
 
 void LightAnimation::animationPattern0() {
 
-
 }
 
 
-
 void LightAnimation::animationPattern1() {
-
 
 }
 
@@ -85,12 +80,10 @@ void LightAnimation::animationStartDevice() {
 
 
 void LightAnimation::animationAllBlinkingWithColorChange() {
-    unsigned long _millis = millis();
-
-    int brightness_max = 64;
-
-    if (_millis < this->last_time + this->period_duration) {
-
+    if (this->shouldExecuteCurrentAnimation()) {
+        unsigned long _millis = this->current_animation_millis;
+        
+        int brightness_max = 64;
         if (_millis < this->last_time + this->period_duration / 2) {
             for (int i = 0; i < 4; i++) {
                 this->leds[i] = CHSV(
@@ -109,22 +102,14 @@ void LightAnimation::animationAllBlinkingWithColorChange() {
             }
         }
         FastLED.show();
-
-    } else {
-        if (this->loop_animation) {
-            this->last_time = _millis;
-            this->loop_count++;
-        } else {
-            this->resetAnimation();
-        }
     }
 }
 
 
 void LightAnimation::animationAllBlinking() {
     
-    unsigned long _millis = millis();
-    if (_millis < this->last_time + this->period_duration) {
+    if (this->shouldExecuteCurrentAnimation()) {
+        unsigned long _millis = this->current_animation_millis;
         
         int brightness_max = 64;
         if (_millis < this->last_time + this->period_duration / 2) {
@@ -145,13 +130,6 @@ void LightAnimation::animationAllBlinking() {
             }
         }
         FastLED.show();
-
-    } else {
-        if (this->loop_animation) {
-            this->last_time = _millis;
-        } else {
-            this->resetAnimation();
-        }
     }
 }
 
@@ -200,7 +178,6 @@ void LightAnimation::animationRollingWheel() {
 
     FastLED.show();
 }
-
 
 
 void LightAnimation::animationIndexing() {
@@ -276,7 +253,6 @@ void LightAnimation::triggerAnimationPattern(int animation_pattern, int period_d
     this->animation = animation_pattern;
     this->loop_animation = loop_animation;
 }
-
 
 
 void LightAnimation::setAllLedsToBlack() {
