@@ -48,6 +48,15 @@ void LightAnimation::update() {
         case ANIMATION_PATTERN_1:
             this->animationPattern1();
             break;
+        case ANIMATION_PATTERN_2:
+            this->animationPattern2();
+            break;
+        case ANIMATION_PATTERN_3:
+            this->animationPattern3();
+            break;
+        case ANIMATION_PATTERN_4:
+            this->animationPattern4();
+            break;
         default:
             break;
     }
@@ -60,6 +69,21 @@ void LightAnimation::animationPattern0() {
 
 
 void LightAnimation::animationPattern1() {
+
+}
+
+
+void LightAnimation::animationPattern2() {
+
+}
+
+
+void LightAnimation::animationPattern3() {
+
+}
+
+
+void LightAnimation::animationPattern4() {
 
 }
 

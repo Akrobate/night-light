@@ -23,7 +23,7 @@ class LightAnimation {
         static constexpr int ANIMATION_PATTERN_1 = 11;
         static constexpr int ANIMATION_PATTERN_2 = 12;
         static constexpr int ANIMATION_PATTERN_3 = 13;
-        static constexpr int ANIMATION_PATTERN_4 = 13;
+        static constexpr int ANIMATION_PATTERN_4 = 14;
 
         bool disabled = false;
         unsigned int animation = 0;
@@ -73,6 +73,9 @@ class LightAnimation {
 
         void animationPattern0();
         void animationPattern1();
+        void animationPattern2();
+        void animationPattern3();
+        void animationPattern4();
 
         bool shouldExecuteCurrentAnimation();
 
