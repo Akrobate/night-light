@@ -1,21 +1,21 @@
 #include <Arduino.h>
-#include <LedInterface.h>
+#include <LightAnimation.h>
 #include <WifiService.h>
 #include <NightLightServer.h>
 #include <BusinessState.h>
 
 #include <configurations.h>
 
-LedInterface * led_interface = nullptr;
+LightAnimation * light_animation = nullptr;
 WifiService * wifi_service = nullptr;
 NightLightServer * night_light_server = nullptr;
 BusinessState * business_state = nullptr;
 
 void setup() {
-    Serial.begin(115200); // 74880
+    Serial.begin(115200);
 
     business_state = new BusinessState();
-    led_interface = new LedInterface();
+    light_animation = new LightAnimation();
     wifi_service = new WifiService();
     night_light_server = new NightLightServer(SERVER_PORT);
 
@@ -28,5 +28,5 @@ void setup() {
 void loop() {
 
     wifi_service->update();
-    led_interface->update();
+    light_animation->update();
 }
