@@ -37,5 +37,12 @@ class BusinessState {
         void setApPassword(const String& pass);
         void setNetworkEnabled(bool enabled);
         void setNetworkAutodisableDelaySeconds(int delay);
+
+        void setCurrentAnimation(unsigned int animation_id);
+        unsigned int getCurrectAnimaiton();
+
+    private:
+        unsigned int current_animation;
+
 };
 

@@ -51,3 +51,12 @@ void BusinessState::setNetworkEnabled(bool enabled) {
 void BusinessState::setNetworkAutodisableDelaySeconds(int delay) {
     network_disable_delay_seconds = delay;
 }
+
+
+void BusinessState::setCurrentAnimation(unsigned int animation_id) {
+    this->current_animation = animation_id;
+}
+
+unsigned int BusinessState::getCurrectAnimaiton() {
+    return this->current_animation;
+}
