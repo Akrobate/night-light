@@ -4,13 +4,13 @@ use <../openscad_modules/housing/roundedPane.scad>
 
 
 /**
- * facadeBackPiece
- * @name facadeBackPiece
+ * facadeBottomPiece
+ * @name facadeBottomPiece
  * @description
  * @type piece
  * @parent housingComponent
  */
-module facadeBackPiece(
+module facadeBottomPiece(
     x_size = case_external_x_size,
     y_size = case_external_y_size,
     z_size = case_external_panes_thickness,
@@ -50,5 +50,5 @@ module facadeBackPiece(
  * @colorscheme BeforeDawn
  * @view axes,scales
  */
-facadeBackPiece();
+facadeBottomPiece();
 

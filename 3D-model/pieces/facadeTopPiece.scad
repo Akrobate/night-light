@@ -1,6 +1,6 @@
 include <../configurations/global.scad>
 use <../openscad_modules/commons/forEachCoord.scad>
-
+use <../openscad_modules/housing/roundedPane.scad>
 
 /**
  * facadeTopPiece
@@ -10,16 +10,23 @@ use <../openscad_modules/commons/forEachCoord.scad>
  * @parent housingComponent
  */
 module facadeTopPiece(
-    x_size = case_external_x_size - (facade_corners_offset_lenght * 2),
-    y_size = case_external_z_size - (case_external_panes_thickness * 2),
+    x_size = case_external_x_size,
+    y_size = case_external_y_size,
     z_size = case_external_panes_thickness,
     throws_margin = facade_throws_margin,
+    round_edges_radius = facade_front_round_edges_radius,
     $fn = facade_fn
 ) {
-    
+
     difference() {
         color("BurlyWood")
-            cube([x_size, y_size, z_size]);
+            roundedPane(
+                [x_size, y_size, z_size],
+                r1 = round_edges_radius,
+                r2 = round_edges_radius,
+                center = false,
+                $fn = $fn
+            );
 
         translate([0, 0, -z_size / 2])
             forEachCoord([
@@ -29,8 +36,8 @@ module facadeTopPiece(
                 [x_size - throws_margin, y_size - throws_margin,],
             ])
                 cylinder(h = z_size * 2, d = 3, $fn = $fn);
-    }
 
+    }
 }
 
 
@@ -41,3 +48,4 @@ module facadeTopPiece(
  * @view axes,scales
  */
 facadeTopPiece();
+

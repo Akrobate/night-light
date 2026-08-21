@@ -2,7 +2,13 @@ include <../configurations/global.scad>
 
 use <../openscad_modules/housing/housingBorder.scad>
 
-
+/**
+ * housingBorderPiece
+ * @name housingBorderPiece
+ * @description housingBorderPiece
+ * @type piece
+ * @parent housingComponent
+ */
 module housingBorderPiece() {
     housingBorder(
         x_size = case_external_x_size,
@@ -19,5 +25,10 @@ module housingBorderPiece() {
 }
 
 
+/**
+ * @stl
+ * @png
+ * @colorscheme BeforeDawn
+ * @view axes,scales
+ */
 housingBorderPiece();
-
