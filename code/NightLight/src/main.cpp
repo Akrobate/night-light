@@ -12,7 +12,7 @@ NightLightServer * night_light_server = nullptr;
 BusinessState * business_state = nullptr;
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(SERIAL_RATE);
 
     business_state = new BusinessState();
     light_animation = new LightAnimation();

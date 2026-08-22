@@ -7,3 +7,6 @@
 
 #define SERVER_PORT           80
 
+#define SERIAL_RATE 115200            
+
+// Serial debug baudrate
