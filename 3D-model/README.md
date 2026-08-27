@@ -1,49 +1,25 @@
 # Night Light 3D model
+## Preview OpenSCAD renders
 
-# Aperçu des rendus OpenSCAD
+### Main
+![main](opm_png_files/main.png)
 
-## Pièces
+### Components
 
-### crystalPiece
-![crystalPiece](png_files/pieces/crystalPiece.png)
+#### housingComponent
+![housingComponent](opm_png_files/components/housingComponent.png)
 
-### facade-back
-![facade-back](png_files/pieces/facade-back.png)
+### Pieces
 
-### facade-corner
-![facade-corner](png_files/pieces/facade-corner.png)
+#### crystalPiece
+![crystalPiece](opm_png_files/pieces/crystalPiece.png)
 
-### facade-front
-![facade-front](png_files/pieces/facade-front.png)
+#### facadeBottomPiece
+![facadeBottomPiece](opm_png_files/pieces/facadeBottomPiece.png)
 
-### facade-left
-![facade-left](png_files/pieces/facade-left.png)
+#### facadeTopPiece
+![facadeTopPiece](opm_png_files/pieces/facadeTopPiece.png)
 
-### facade-top
-![facade-top](png_files/pieces/facade-top.png)
-
-## Composants
-
-### housing-component
-![housing-component](png_files/components/housing-component.png)
-
-## Assemblage principal
-
-![main](png_files/main.png)
-
-
-
-```
-.
-├── components
-│   └── housing-component.png
-├── main.png
-└── pieces
-    ├── crystalPiece.png
-    ├── facade-back.png
-    ├── facade-corner.png
-    ├── facade-front.png
-    ├── facade-left.png
-    └── facade-top.png
-```
+#### housingBorderPiece
+![housingBorderPiece](opm_png_files/pieces/housingBorderPiece.png)
 
